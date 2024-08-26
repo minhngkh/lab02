@@ -17,7 +17,7 @@ public class DiffTermPerDoc {
 
         @Override
         protected void setup(Mapper<LongWritable, Text, IntWritable, NullWritable>.Context context) throws IOException, InterruptedException {
-            headers = Utils.getMtxHeaders(context.getConfiguration());
+            headers = Utils.getMtxHeaders(context.getConfiguration(), "tf2");
         }
 
         @Override
@@ -31,6 +31,7 @@ public class DiffTermPerDoc {
             String[] parts = value.toString().split("\\s+");
             int tokenIdx = Integer.parseInt(parts[0]);
             int docIdx = Integer.parseInt(parts[1]);
+            int freq = Integer.parseInt(parts[2]);
 
             context.write(new IntWritable(docIdx), NullWritable.get());
         }

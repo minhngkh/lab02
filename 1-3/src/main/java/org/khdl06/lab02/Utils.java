@@ -67,19 +67,21 @@ public class Utils {
 
             List<String> lookup = CoreUtils.getTermLookup(fs, ConfigDirectory);
 
-            ArrayList<String> data = new ArrayList<>();
+            ArrayList<String[]> data = new ArrayList<>();
             try (BufferedReader reader = CoreUtils.getReader(fs, curPath)) {
                 String line;
                 while ((line = reader.readLine()) != null) {
                     String[] tokens = line.split("\\s+");
                     int termIdx = Integer.parseInt(tokens[1]);
-                    data.add(lookup.get(termIdx));
+                    String freq = tokens[0];
+
+                    data.add(new String[]{lookup.get(termIdx), freq});
                 }
 
                 Path outputPath = new Path(OutputDirectory + "/" + "task_1_3.txt");
                 try (FSDataOutputStream writer = CoreUtils.getWriter(fs, outputPath)) {
-                    for (String lineData : data) {
-                        writer.writeBytes(lineData + "\n");
+                    for (String[] d : data) {
+                        writer.writeBytes(d[0] + ": " + d[1] + "\n");
                     }
                 }
 

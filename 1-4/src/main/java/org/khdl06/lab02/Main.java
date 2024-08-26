@@ -18,29 +18,21 @@ public class Main {
         Utils utils = new Utils(conf, args[0], args[1], args[2]);
 
 
-        utils.configureJobIoFile(job);
-        utils.processInputMtxInfo(job);
-
-        job.setJarByClass(Main.class);
-        job.setMapperClass(FreqInDocMapper.class);
-        job.setReducerClass(FreqInDocReducer.class);
-
-        job.setInputFormatClass(TextInputFormat.class);
-        job.setOutputKeyClass(IntWritable.class);
-        job.setOutputValueClass(IntPair.class);
-
-
         Job tfJob1 = Job.getInstance(conf, "TermFreqInDoc");
         tfJob1.setCombinerClass(TermFreqInDoc.ReducerImpl.class);
         tfJob1.setReducerClass(TermFreqInDoc.ReducerImpl.class);
         tfJob1.setOutputKeyClass(IntPair.class);
         tfJob1.setOutputValueClass(IntWritable.class);
+        utils.configureJobIoFile(tfJob1, "tf1");
+        utils.processInputMtxInfo(tfJob1, "same");
 
         Job tfJob2 = Job.getInstance(conf, "DiffTermPerDoc");
         tfJob2.setCombinerClass(DiffTermPerDoc.ReducerImpl.class);
         tfJob2.setReducerClass(DiffTermPerDoc.ReducerImpl.class);
         tfJob2.setOutputKeyClass(IntWritable.class);
         tfJob2.setOutputValueClass(IntWritable.class);
+        utils.configureJobIoFile(tfJob1, "tf2");
+        utils.processInputMtxInfo(tfJob1, "same");
 
 
         Job idfJob1 = Job.getInstance(conf, "DocPerCluster");
@@ -48,12 +40,16 @@ public class Main {
         idfJob1.setReducerClass(DocPerCluster.ReducerImpl.class);
         idfJob1.setOutputKeyClass(Text.class);
         idfJob1.setOutputValueClass(IntWritable.class);
+        utils.configureJobIoFile(tfJob1, "idf1");
+        utils.processInputMtxInfo(tfJob1, "same");
 
         Job idfJob2 = Job.getInstance(conf, "DocContainingTermPerCluster");
         idfJob2.setCombinerClass(DocContainingTermPerCluster.ReducerImpl.class);
         idfJob2.setReducerClass(DocContainingTermPerCluster.ReducerImpl.class);
         idfJob2.setOutputKeyClass(IntStringPair.class);
         idfJob2.setOutputValueClass(IntWritable.class);
+        utils.configureJobIoFile(tfJob1, "idf2");
+        utils.processInputMtxInfo(tfJob1, "same");
 
         tfJob1.submit();
         idfJob1.submit();

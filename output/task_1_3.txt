@@ -1,10 +1,10 @@
-music
-song
-we
-best
-wage
-minimum
-roddick
-have
-nadal
-will
+music: 68
+song: 65
+we: 61
+best: 55
+wage: 51
+minimum: 47
+roddick: 46
+have: 42
+nadal: 41
+will: 40

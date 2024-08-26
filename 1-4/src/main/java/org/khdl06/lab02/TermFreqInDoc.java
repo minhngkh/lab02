@@ -16,7 +16,7 @@ public class TermFreqInDoc {
 
         @Override
         protected void setup(Mapper<LongWritable, Text, IntPair, IntWritable>.Context context) throws IOException, InterruptedException {
-            headers = Utils.getMtxHeaders(context.getConfiguration());
+            headers = Utils.getMtxHeaders(context.getConfiguration(), "same");
         }
 
         @Override

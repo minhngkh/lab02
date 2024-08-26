@@ -19,7 +19,7 @@ import java.util.Map;
 public class Utils {
     private final Configuration Conf;
     private final String ConfigDirectory;
-    private final String InputFile;
+    public final String InputFile;
     private final String OutputDirectory;
 
     public static final String TempName = "temp-1-2";
@@ -33,27 +33,27 @@ public class Utils {
         this.OutputDirectory = outputDirectory;
     }
 
-    public static List<String> getMtxHeaders(Configuration conf) throws IOException {
+    public static List<String> getMtxHeaders(Configuration conf, String subName) throws IOException {
         FileSystem fs = FileSystem.get(conf);
 
-        return CoreUtils.getMtxHeaders(fs, TempName);
+        return CoreUtils.getMtxHeaders(fs, TempName + "/" + subName);
     }
 
-    public void configureJobIoFile(Job job) throws IOException {
+    public void configureJobIoFile(Job job, String subName) throws IOException {
         FileInputFormat.addInputPath(job, new Path(InputFile));
         FileOutputFormat.setOutputPath(job,
-                CoreUtils.getTaskTempDirectory(TempName));
+                CoreUtils.getTaskTempDirectory(TempName + "/" + subName));
 
         Conf.set("configDirectory", ConfigDirectory);
     }
 
-    public void trashTempTaskFile(String jobName) throws IOException {
+    public void trashTempTaskFile(String subName) throws IOException {
         FileSystem fs = FileSystem.get(Conf);
-        fs.delete(CoreUtils.getTaskTempDirectory(TempName + "/" + jobName), true);
+        fs.delete(CoreUtils.getTaskTempDirectory(TempName + "/" + subName), true);
     }
 
-    public void processInputMtxInfo(Job job, ) throws IOException {
-        CoreUtils.processInputMtxInfo(job, InputFile, TempName);
+    public void processInputMtxInfo(Job job, String subName) throws IOException {
+        CoreUtils.processInputMtxInfo(job, InputFile, subName);
     }
 
     public void exportToMtx() throws IOException {
