@@ -35,9 +35,7 @@ public class Main {
             System.exit(exitCode);
         }
 
-        System.out.println("Exporting to .mtx file...");
-
-//        utils.exportToMtx();
+        utils.exportToTxtFile();
         System.exit(0);
     }
 }

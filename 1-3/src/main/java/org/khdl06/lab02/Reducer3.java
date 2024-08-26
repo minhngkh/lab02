@@ -30,7 +30,7 @@ public class Reducer3 extends Reducer<IntWritable, IntWritable, IntWritable,
     @Override
     protected void cleanup(Reducer<IntWritable, IntWritable, IntWritable, IntWritable>.Context context) throws IOException, InterruptedException {
 
-        for (Map.Entry<Integer, Integer> entry : map.entrySet()) {
+        for (Map.Entry<Integer, Integer> entry : map.descendingMap().entrySet()) {
             context.write(new IntWritable(entry.getKey()),
                     new IntWritable(entry.getValue()));
         }

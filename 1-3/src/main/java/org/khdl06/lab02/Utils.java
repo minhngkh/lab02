@@ -51,4 +51,39 @@ public class Utils {
     public void processInputMtxInfo(Job job) throws IOException {
         CoreUtils.processInputMtxInfo(job, InputFile, TempName);
     }
+
+    public void exportToTxtFile() throws IOException {
+        FileSystem fs = FileSystem.get(Conf);
+
+
+        FileStatus[] tempOutputFiles = fs.listStatus(
+                CoreUtils.getTaskTempDirectory(TempName)
+        );
+        for (FileStatus file : tempOutputFiles) {
+            Path curPath = file.getPath();
+            if (!curPath.getName().startsWith("part-r-")) {
+                continue;
+            }
+
+            List<String> lookup = CoreUtils.getTermLookup(fs, ConfigDirectory);
+
+            ArrayList<String> data = new ArrayList<>();
+            try (BufferedReader reader = CoreUtils.getReader(fs, curPath)) {
+                String line;
+                while ((line = reader.readLine()) != null) {
+                    String[] tokens = line.split("\\s+");
+                    int termIdx = Integer.parseInt(tokens[1]);
+                    data.add(lookup.get(termIdx));
+                }
+
+                Path outputPath = new Path(OutputDirectory + "/" + "task_1_3.txt");
+                try (FSDataOutputStream writer = CoreUtils.getWriter(fs, outputPath)) {
+                    for (String lineData : data) {
+                        writer.writeBytes(lineData + "\n");
+                    }
+                }
+
+            }
+        }
+    }
 }
