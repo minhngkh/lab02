@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/1-1-text-cleaning-and-term-frequency/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-1-text-cleaning-and-term-frequency/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-2-low-frequency-term-elimination/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-2-low-frequency-term-elimination/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-3-top-10-most-frequent-words/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-3-top-10-most-frequent-words/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-3/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/1-3/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/test/src/main/resources" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils/src/main/java" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/utils/src/main/resources" charset="UTF-8" />
+  </component>
+</project>

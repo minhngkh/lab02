@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="1-2-low-frequency-term-elimination:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/1_2_low_frequency_term_elimination_jar</output-path>
+    <root id="archive" name="1-2-low-frequency-term-elimination.jar">
+      <element id="module-output" name="1-2-low-frequency-term-elimination" />
+      <element id="module-output" name="utils" />
+    </root>
+  </artifact>
+</component>

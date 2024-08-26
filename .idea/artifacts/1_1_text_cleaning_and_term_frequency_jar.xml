@@ -1,0 +1,9 @@
+<component name="ArtifactManager">
+  <artifact type="jar" name="1-1-text-cleaning-and-term-frequency:jar">
+    <output-path>$PROJECT_DIR$/out/artifacts/1_1_text_cleaning_and_term_frequency_jar</output-path>
+    <root id="archive" name="1-1-text-cleaning-and-term-frequency.jar">
+      <element id="module-output" name="1-1-text-cleaning-and-term-frequency" />
+      <element id="module-output" name="utils" />
+    </root>
+  </artifact>
+</component>
